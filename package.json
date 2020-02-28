@@ -25,7 +25,10 @@
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "html-loader": "^0.5.5",
+    "react-hot": "0.0.1",
+    "react-hot-loader": "^4.12.19",
     "webpack": "^4.41.6",
-    "webpack-dev-middleware": "^3.7.2"
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-hot-middleware": "^2.25.0"
   }
 }
