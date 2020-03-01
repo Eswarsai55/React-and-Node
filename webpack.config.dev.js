@@ -18,7 +18,10 @@ export default {
     rules: [ //webpack intially doesnot know anything about js 
       {
         test: /\.js$/, //look for .js files
-        include: path.join(__dirname, 'client'),
+        include: [
+          path.join(__dirname, 'client'),
+          path.join(__dirname,'server/shared'),
+        ],
         use: {
           loader: 'react-hot', 
           loader: 'babel-loader'
