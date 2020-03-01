@@ -4,6 +4,7 @@ import map from 'lodash/map';
 import classname from 'classnames';
 import validateInput from '../../../server/shared/validations/signup';
 import TextFieldGroup from '../../components/common/TextFieldGroup';
+import PropTypes  from 'prop-types';
 
 export class SignupForm extends Component {
   constructor(props) {
@@ -40,7 +41,11 @@ export class SignupForm extends Component {
 
     if(this.isValid()) {
       this.setState({ errors: {}, isLoading: true });
-      this.props.userSignupRequest(this.state).then().catch(error => {
+      this.props.userSignupRequest(this.state).then(() => {
+        //this.context.route.push('/');
+        const { location } = window;
+        location.assign('/');
+      }).catch(error => {
         this.setState({
           errors: error.response.data,
           isLoading: false,
@@ -125,4 +130,7 @@ export class SignupForm extends Component {
   }
 }
 
+SignupForm.contextType = {
+  router: PropTypes.object.isRequired,
+}
 export default SignupForm
