@@ -3,13 +3,18 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import rootReducer from './rootReducer';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 import  App from './components/App';
 import SignupPage from './components/signup/SignupPage';
 
-const store = createStore(
-  (state = {}) => state,
-  applyMiddleware(thunk)
+const middleware = [thunk];
+//const intialState = {};
+export const store = createStore(
+  rootReducer,// where we combine all the reducersfor different actions to dispatch on redux
+  //intialState,
+  composeWithDevTools(applyMiddleware(...middleware))
 )
 
 export default (
