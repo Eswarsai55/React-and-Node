@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import timezones from '../../data/timezones';
 import map from 'lodash/map';
 import classname from 'classnames';
+import { withRouter } from "react-router-dom";
 import validateInput from '../../../server/shared/validations/signup';
 import TextFieldGroup from '../../components/common/TextFieldGroup';
 import PropTypes  from 'prop-types';
+
 
 export class SignupForm extends Component {
   constructor(props) {
@@ -23,7 +25,7 @@ export class SignupForm extends Component {
   };
   onChange(e){
     this.setState({
-      [e.target.name]:e.target.value,
+      [e.target.name]: e.target.value,
     })
   }
 
@@ -41,15 +43,24 @@ export class SignupForm extends Component {
 
     if(this.isValid()) {
       this.setState({ errors: {}, isLoading: true });
-      this.props.userSignupRequest(this.state).then(() => {
-        //this.context.route.push('/');
-        const { location } = window;
-        location.assign('/');
-      }).catch(error => {
-        this.setState({
-          errors: error.response.data,
-          isLoading: false,
+      this.props.userSignupRequest(this.state).then((response) => {
+        if (response.error) {
+          this.setState({
+            errors: error.response.data,
+            isLoading: false,
+          })
+        }
+        this.props.history.push('/');
+        this.props.addFlashMessage({
+          type: 'success',
+          text: 'You signed up successfully',
         })
+      }).catch(error => {
+        console.log(error);
+        this.setState({
+          errors: error,
+          isLoading: false,
+        }) 
       })
     }     
   }
@@ -133,4 +144,4 @@ export class SignupForm extends Component {
 SignupForm.contextType = {
   router: PropTypes.object.isRequired,
 }
-export default SignupForm
+export default withRouter(SignupForm);
