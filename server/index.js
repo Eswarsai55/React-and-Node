@@ -6,6 +6,8 @@ import webpack from 'webpack';
 import webpackMiddleware from 'webpack-dev-middleware';
 import webpackConfig from '../webpack.config.dev';
 import webpackHotMiddleware from 'webpack-hot-middleware';
+import {connectDb}  from './database/index';
+import mongoose from 'mongoose';
 
 import users from './routes/users';
 
@@ -14,6 +16,8 @@ let app = express();
 app.use(bodyParser.json());
 
 app.use('/api/users', users);
+
+connectDb()
 
 const compiler = webpack(webpackConfig);
 app.use(webpackHotMiddleware(compiler, {
