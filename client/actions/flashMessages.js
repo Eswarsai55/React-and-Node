@@ -1,4 +1,4 @@
-import { ADD_FLASH_MESSAGE } from './types';
+import { ADD_FLASH_MESSAGE, DELETE_FLASH_MESSAGE } from './types';
 
 export function addFlashMessage(message) {
   return dispatch => {
@@ -8,4 +8,13 @@ export function addFlashMessage(message) {
   //     type: ADD_FLASH_MESSAGE,
   //     message,
   // }
+}
+
+export function deleteFlashMessage(id) {
+  return dispatch => {
+    dispatch({
+      type: DELETE_FLASH_MESSAGE,
+      id
+    }) 
+  }
 }
