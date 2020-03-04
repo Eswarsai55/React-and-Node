@@ -77,6 +77,7 @@ export class SignupForm extends Component {
         <TextFieldGroup 
           label = "UserName"
           onChange = {this.onChange}
+          type="text"
           field="username"
           error={errors.username}
           value={this.state.username}
@@ -85,6 +86,7 @@ export class SignupForm extends Component {
           label = "Email"
           onChange = {this.onChange}
           field="email"
+          type="text"
           error={errors.email}
           value={this.state.email}
         />
@@ -92,6 +94,7 @@ export class SignupForm extends Component {
           label = "Password"
           onChange = {this.onChange}
           field="password"
+          type="password"
           error={errors.password}
           value={this.state.password}
         />
@@ -99,6 +102,7 @@ export class SignupForm extends Component {
           label = "Confirm Password"
           onChange = {this.onChange}
           field="confirmPassword"
+          type="text"
           error={errors.confirmPassword}
           value={this.state.confirmPassword}
         />
@@ -123,7 +127,7 @@ export class SignupForm extends Component {
           <input value = {this.state.confirmPassword} onChange = {this.onChange} type="text" name="confirmPassword" className="form-control"/>
           {errors.confirmPassword && <span className="help-block">{errors.confirmPassword}</span>}
         </div> */}
-        <div className={classname("form-group", {'has-error': errors.confirmPassword})}>
+        <div className={classname("form-group", {'has-error': errors.timezone})}>
           <label className="control-label">TimeZone</label>
           <select value = {this.state.timezone} onChange = {this.onChange} type="text" name="timezone" className="form-control">
             <option value="" disabled>Choose Your TimeZone</option>

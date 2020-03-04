@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { userSignupRequest } from '../../actions/signupAction';
 import { addFlashMessage } from '../../actions/flashMessages';
-import { withRouter } from "react-router-dom";
 
 
 export class SignupPage extends Component {
@@ -16,7 +15,6 @@ export class SignupPage extends Component {
         <div className = "col-md-4 col-md-offset-4">
           <SignupForm userSignupRequest={userSignupRequest} addFlashMessage={addFlashMessage}/>
         </div>
-        
       </div>
     )
   }
