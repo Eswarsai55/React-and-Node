@@ -8,6 +8,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import  App from './components/App';
 import SignupPage from './components/signup/SignupPage';
+import LoginPage from './components/login/LoginPage';
+
 
 const middleware = [thunk];
 //const intialState = {};
@@ -23,6 +25,7 @@ export default (
       <Router>
         <Route path = "/" component={App}/>
         <Route path = "/signup" component={SignupPage}/>
+        <Route path = '/login' component={LoginPage}/>
       </Router>
     </Provider>
   </div> 
