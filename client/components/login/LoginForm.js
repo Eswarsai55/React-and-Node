@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import TextFieldGroup from '../common/TextFieldGroup';
 import validateInput from '../../../server/shared/validations/login';
 import { withRouter } from "react-router-dom";
+import setAuthorizationToken from '../../utils/setAuthorizationToken';
+import jwt from 'jsonwebtoken';
+
 
 
 export class LoginForm extends Component {
@@ -38,20 +41,24 @@ export class LoginForm extends Component {
     if (this.isValid()) {
       this.setState({errors: {},isLoading: true});
       this.props.userLoginRequest(this.state).then(response => {
-        console.log(response);
-        if(response.data.error) {
+        if (response.data.error) {
           this.setState({
             errors: response.data.error,
             isLoading: false
           })
+        } else {
+          localStorage.setItem('jwtToken', response.data.token)
+          setAuthorizationToken(response.data.token);
+          console.log(jwt.decode(response.data.token))
+          this.props.setCurrentUser(jwt.decode(response.data.token))
+          this.props.history.push('/');
+          this.props.addFlashMessage({
+            type: 'success',
+            text: 'Login successful'
+          })
         }
-        this.props.history.push('/');
-        this.props.addFlashMessage({
-          type: 'success',
-          text: 'Login successful'
-        })
       }).catch(error => {
-        console.log(error.response);
+        console.log(error);
         this.setState({
           errors: error.response.data,
           isLoading: false,
