@@ -38,5 +38,9 @@ export default {
   },
   resolve: {
     extensions: ['.js']
+  },
+  node: {// while dedcoding token on client side to resolve the issue of dns and net
+    net: 'empty',
+    dns: 'empty',
   }
 }

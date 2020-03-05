@@ -12,8 +12,9 @@ router.post('/', (req,res) => {
   
   if (isValid) {
     const { identifier, password} = req.body;
-    User.find({email: identifier}).then(user => {
-      if(passwordHash.verify(user.password, password)) {
+    User.find({email: identifier}).then(users => {
+      const user = users[0];
+      //if(passwordHash.verify(user.password, password)) {
         const token = jwt.sign({
           id: user.id,
           username: user.username
@@ -21,11 +22,11 @@ router.post('/', (req,res) => {
         return res.json({
           token
         })
-      } else {
-        res.status(400).json({
-          message: 'Invalid credentials'
-        })
-      }
+      // } else {
+      //   res.status(400).json({
+      //     message: 'Invalid credentials'
+      //   })
+      // }
     }).catch(err => {
       console.log(err);
       res.status(400).json(err)

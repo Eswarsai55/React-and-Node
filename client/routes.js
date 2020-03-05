@@ -9,6 +9,9 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import  App from './components/App';
 import SignupPage from './components/signup/SignupPage';
 import LoginPage from './components/login/LoginPage';
+import setAuthorizationToken from './utils/setAuthorizationToken';
+import jwt from 'jsonwebtoken';
+import {setCurrentUser} from './actions/loginAction';
 
 
 const middleware = [thunk];
@@ -18,6 +21,12 @@ export const store = createStore(
   //intialState,
   composeWithDevTools(applyMiddleware(...middleware))
 )
+
+if(localStorage.jwtToken) {
+  setAuthorizationToken(localStorage.jwtToken);
+  store.dispatch(setCurrentUser(jwt.decode(localStorage.jwtToken)))
+
+}
 
 export default (
   <div>
