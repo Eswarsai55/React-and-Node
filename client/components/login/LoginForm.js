@@ -49,7 +49,6 @@ export class LoginForm extends Component {
         } else {
           localStorage.setItem('jwtToken', response.data.token)
           setAuthorizationToken(response.data.token);
-          console.log(jwt.decode(response.data.token))
           this.props.setCurrentUser(jwt.decode(response.data.token))
           this.props.history.push('/');
           this.props.addFlashMessage({
