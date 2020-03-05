@@ -9,6 +9,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import  App from './components/App';
 import SignupPage from './components/signup/SignupPage';
 import LoginPage from './components/login/LoginPage';
+import NewEventPage from './components/events/NewEventPage';
+
 import setAuthorizationToken from './utils/setAuthorizationToken';
 import jwt from 'jsonwebtoken';
 import {setCurrentUser} from './actions/loginAction';
@@ -34,7 +36,8 @@ export default (
       <Router>
         <Route path = "/" component={App}/>
         <Route path = "/signup" component={SignupPage}/>
-        <Route path = '/login' component={LoginPage}/>
+        <Route path = "/login" component={LoginPage}/>
+        <Route path = "/new-event" component={NewEventPage}/>
       </Router>
     </Provider>
   </div> 

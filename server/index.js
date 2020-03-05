@@ -7,10 +7,10 @@ import webpackMiddleware from 'webpack-dev-middleware';
 import webpackConfig from '../webpack.config.dev';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import {connectDb}  from './database/index';
-import mongoose from 'mongoose';
 
 import users from './routes/users';
 import auth from './routes/auth';
+import events from './routes/events';
 
 let app = express();
 
@@ -18,6 +18,7 @@ app.use(bodyParser.json());
 
 app.use('/api/users', users);
 app.use('/api/auth', auth);
+app.use('/api/event',events);
 
 connectDb()
 
