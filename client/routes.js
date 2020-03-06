@@ -15,6 +15,8 @@ import setAuthorizationToken from './utils/setAuthorizationToken';
 import jwt from 'jsonwebtoken';
 import {setCurrentUser} from './actions/loginAction';
 
+import requireAuth from './utils/requireAuth';
+
 
 const middleware = [thunk];
 //const intialState = {};
@@ -37,7 +39,7 @@ export default (
         <Route path = "/" component={App}/>
         <Route path = "/signup" component={SignupPage}/>
         <Route path = "/login" component={LoginPage}/>
-        <Route path = "/new-event" component={NewEventPage}/>
+        <Route path = "/new-event" component={requireAuth(NewEventPage)}/>
       </Router>
     </Provider>
   </div> 
